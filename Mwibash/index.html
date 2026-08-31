@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>St. Martin's Mwibale Secondary School</title>
+<style>
+  @font-face{
+    font-family:'Fraunces';font-style:normal;font-weight:300;font-display:swap;
+    src:url('fonts/Fraunces-300.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/Fraunces-500.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/Fraunces-600.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Fraunces';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/Fraunces-700.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Fraunces';font-style:italic;font-weight:500;font-display:swap;
+    src:url('fonts/Fraunces-Italic-500.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Work Sans';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/WorkSans-400.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Work Sans';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/WorkSans-500.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Work Sans';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/WorkSans-600.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Work Sans';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/WorkSans-700.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/SpaceMono-Regular.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Space Mono';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/SpaceMono-Bold.woff2') format('woff2');
+  }
+  :root{
+    --board:#16302A;
+    --board-dark:#0F2620;
+    --paper:#F6F1E3;
+    --paper-dim:#EFE7D2;
+    --ink:#1F2A24;
+    --chalk:#F5F1E6;
+    --gold:#C69A2E;
+    --gold-dim:#8F7220;
+    --maroon:#7A2331;
+    --sage:#4C6B58;
+    --line: rgba(245,241,230,0.18);
+    --line-dark: rgba(31,42,36,0.14);
+    --shadow: 0 18px 40px rgba(15,38,32,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'Space Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.75;
+  }
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- placeholder image system ---------- */
+  .ph-image{
+    position:relative;overflow:hidden;background:var(--sage);
+    background-image:repeating-linear-gradient(135deg, rgba(0,0,0,0.06) 0 12px, rgba(0,0,0,0) 12px 24px);
+  }
+  .ph-image img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ph-image.missing img{display:none;}
+  .ph-image::after{
+    content:attr(data-label);
+    position:absolute;inset:0;display:none;
+    align-items:center;justify-content:center;text-align:center;
+    padding:14px;font-family:'Space Mono',monospace;font-size:11px;
+    letter-spacing:0.03em;color:rgba(245,241,230,0.85);
+    background:rgba(15,38,32,0.35);line-height:1.6;
+  }
+  .ph-image.missing::after{display:flex;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--board);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 28px;
+    max-width:1160px;margin:0 auto;
+    color:var(--chalk);
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .crest{
+    width:42px;height:42px;border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;font-size:15px;
+    color:var(--gold);
+    flex-shrink:0;
+    background:radial-gradient(circle at 35% 30%, rgba(198,154,46,0.18), transparent 70%);
+  }
+  .brand-text{line-height:1.15;}
+  .brand-text .name{font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;}
+  .brand-text .sub{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:var(--gold);text-transform:uppercase;}
+  nav.links{display:flex;gap:24px;align-items:center;}
+  nav.links a{
+    font-size:14px;color:var(--chalk);opacity:0.82;
+    position:relative;padding:4px 0;white-space:nowrap;
+  }
+  nav.links a:hover{opacity:1;}
+  nav.links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);
+    transition:width 0.25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .cta-btn{
+    background:var(--gold);color:var(--board-dark);
+    padding:10px 20px;border-radius:2px;border:none;
+    font-weight:600;font-size:13.5px;letter-spacing:0.02em;
+    transition:transform 0.2s ease, background 0.2s ease;
+    display:inline-block;
+  }
+  .cta-btn:hover{background:#DBB13E;transform:translateY(-1px);}
+  .cta-ghost{
+    border:1px solid var(--line);color:var(--chalk);
+    background:transparent;padding:10px 20px;border-radius:2px;
+    font-weight:600;font-size:13.5px;display:inline-block;
+  }
+  .cta-ghost:hover{border-color:var(--gold);color:var(--gold);}
+  .menu-toggle{display:none;background:none;border:none;color:var(--chalk);font-size:24px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:74px 0 90px;
+    color:var(--chalk);
+  }
+  .hero-bg{position:absolute;inset:0;z-index:0;}
+  .hero-bg .ph-image{width:100%;height:100%;}
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:
+      linear-gradient(100deg, rgba(15,38,32,0.94) 0%, rgba(15,38,32,0.86) 38%, rgba(15,38,32,0.55) 68%, rgba(15,38,32,0.72) 100%);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;
+    position:relative;z-index:1;
+  }
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;
+    color:var(--gold);
+  }
+  .hero-eyebrow .rule{width:34px;height:1px;background:var(--gold);}
+  .hero h1{
+    font-size:clamp(34px,4.6vw,56px);
+    line-height:1.08;
+    font-weight:600;
+  }
+  .chalk-underline{position:relative;display:inline-block;}
+  .chalk-underline svg{position:absolute;left:0;bottom:-6px;width:100%;height:14px;}
+  .chalk-underline path{
+    fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;
+    stroke-dasharray:340;stroke-dashoffset:340;
+    animation:draw 1.4s 0.5s ease forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .hero p.lede{
+    margin-top:22px;font-size:16.5px;line-height:1.7;
+    color:rgba(245,241,230,0.82);max-width:480px;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+
+  /* ---------- hero carousel ---------- */
+  .carousel{
+    position:relative;
+    background:rgba(15,38,32,0.55);
+    border:1px solid var(--line);
+    backdrop-filter:blur(6px);
+    min-height:340px;
+    display:flex;flex-direction:column;
+  }
+  .carousel-track{position:relative;flex:1;min-height:270px;}
+  .slide{
+    position:absolute;inset:0;padding:32px 30px 20px;
+    display:flex;flex-direction:column;justify-content:center;
+    opacity:0;transform:translateX(16px);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+    pointer-events:none;
+  }
+  .slide.active{opacity:1;transform:translateX(0);pointer-events:auto;}
+  .slide .s-eyebrow{color:var(--gold);margin-bottom:14px;}
+  .slide h3{font-size:20px;font-weight:600;line-height:1.3;margin-bottom:12px;}
+  .slide p{font-size:14.5px;line-height:1.65;color:rgba(245,241,230,0.82);margin:0;}
+  .slide-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .slide-stats div .num{font-family:'Space Mono',monospace;font-size:26px;color:var(--gold);font-weight:700;}
+  .slide-stats div .lbl{font-size:11.5px;opacity:0.72;margin-top:3px;}
+  .carousel-controls{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 22px;border-top:1px solid var(--line);
+  }
+  .carousel-dots{display:flex;gap:8px;}
+  .carousel-dots button{
+    width:7px;height:7px;border-radius:50%;border:none;background:rgba(245,241,230,0.3);padding:0;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+  .carousel-dots button.active{background:var(--gold);transform:scale(1.25);}
+  .carousel-arrows{display:flex;gap:8px;}
+  .carousel-arrows button{
+    width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--chalk);
+    display:flex;align-items:center;justify-content:center;font-size:14px;
+    transition:border-color 0.2s ease, color 0.2s ease;
+  }
+  .carousel-arrows button:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ---------- ledger stat strip ---------- */
+  .ledger-strip{
+    background:var(--paper-dim);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .ledger-row{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    max-width:1160px;margin:0 auto;
+  }
+  .ledger-cell{
+    padding:26px 28px;
+    border-right:1px solid var(--line-dark);
+    text-align:left;
+  }
+  .ledger-cell:last-child{border-right:none;}
+  .ledger-cell .val{font-family:'Space Mono',monospace;font-size:26px;font-weight:700;color:var(--maroon);}
+  .ledger-cell .lbl{font-size:12.5px;margin-top:4px;opacity:0.72;}
+
+  /* ---------- section shell ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:600px;margin-bottom:56px;}
+  .section-head .eyebrow{color:var(--maroon);}
+  .section-head h2{font-size:clamp(26px,3vw,38px);margin-top:10px;font-weight:600;}
+  .section-head p{margin-top:14px;font-size:15.5px;line-height:1.65;opacity:0.78;}
+
+  /* ---------- report cards (why us) ---------- */
+  .card-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .report-card{
+    background:#fff;border:1px solid var(--line-dark);
+    padding:30px 26px;position:relative;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .report-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .report-card .stamp{
+    position:absolute;top:22px;right:22px;
+    font-family:'Space Mono',monospace;font-size:10px;color:var(--gold-dim);
+    border:1px solid var(--gold-dim);padding:3px 8px;border-radius:2px;
+    transform:rotate(4deg);
+  }
+  .report-card h3{font-size:19px;margin-bottom:10px;font-weight:600;}
+  .report-card p{font-size:14.5px;line-height:1.6;opacity:0.75;margin:0;}
+  .report-card .grade{
+    font-family:'Space Mono',monospace;font-size:34px;color:var(--sage);
+    margin-bottom:14px;font-weight:700;
+  }
+
+  /* ---------- academics / ledger table ---------- */
+  .academics{background:var(--board);color:var(--chalk);position:relative;}
+  .academics .section-head p{color:rgba(245,241,230,0.7);}
+  .academics .section-head .eyebrow{color:var(--gold);}
+  .ledger-table-wrap{
+    background:rgba(245,241,230,0.03);
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  table.ledger{width:100%;border-collapse:collapse;}
+  table.ledger th{
+    text-align:left;font-family:'Space Mono',monospace;font-size:11px;
+    text-transform:uppercase;letter-spacing:0.06em;
+    padding:16px 22px;border-bottom:1px solid var(--line);
+    color:var(--gold);opacity:0.9;
+  }
+  table.ledger td{
+    padding:16px 22px;border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  table.ledger tr:last-child td{border-bottom:none;}
+  table.ledger td.num{font-family:'Space Mono',monospace;color:var(--chalk);}
+  .bar-track{width:110px;height:6px;background:rgba(245,241,230,0.12);position:relative;}
+  .bar-fill{position:absolute;left:0;top:0;height:100%;background:var(--gold);width:0;transition:width 1.1s ease;}
+  .stamp-verify{
+    position:absolute;top:24px;right:24px;
+    width:104px;height:104px;border-radius:50%;
+    border:2.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    transform:rotate(-14deg) scale(0.5);opacity:0;
+    transition:transform 0.6s cubic-bezier(.2,1.4,.4,1), opacity 0.6s ease;
+    font-family:'Space Mono',monospace;font-size:10.5px;color:var(--gold);
+    letter-spacing:0.05em;line-height:1.4;
+    background:rgba(198,154,46,0.05);
+  }
+  .stamp-verify.in{transform:rotate(-14deg) scale(1);opacity:0.9;}
+
+  /* ---------- life at school ---------- */
+  .facility-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-dark);}
+  .facility{
+    background:var(--paper);padding:34px 28px;min-height:180px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    transition:background 0.25s ease;
+  }
+  .facility:hover{background:var(--paper-dim);}
+  .facility .fi{width:34px;height:34px;color:var(--maroon);margin-bottom:20px;}
+  .facility h3{font-size:16px;font-weight:600;margin-bottom:6px;}
+  .facility p{font-size:13.5px;opacity:0.7;line-height:1.55;margin:0;}
+
+  /* ---------- gallery (notice board) ---------- */
+  .gallery-board{
+    background:var(--paper-dim);
+    border:1px solid var(--line-dark);
+    padding:44px 40px;
+    position:relative;
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:130px;
+    gap:22px;
+  }
+  .g-item{
+    position:relative;background:#fff;padding:10px 10px 26px;
+    box-shadow:0 10px 24px rgba(15,38,32,0.16);
+    cursor:pointer;transition:transform 0.25s ease, box-shadow 0.25s ease, z-index 0s;
+  }
+  .g-item:hover{transform:translateY(-6px) rotate(0deg) !important;box-shadow:0 18px 34px rgba(15,38,32,0.24);z-index:5;}
+  .g-item .ph-image{width:100%;height:100%;}
+  .g-item .pin{
+    position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+    width:11px;height:11px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #b8433f, #7a2331);
+    box-shadow:0 3px 5px rgba(0,0,0,0.3);
+  }
+  .g-item .cap{
+    position:absolute;bottom:5px;left:10px;right:10px;
+    font-family:'Space Mono',monospace;font-size:9.5px;color:var(--ink);opacity:0.6;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .g-item.big{grid-column:span 2;grid-row:span 2;}
+  .g-item:nth-child(3n+1){transform:rotate(-2deg);}
+  .g-item:nth-child(3n+2){transform:rotate(1.5deg);}
+  .g-item:nth-child(3n+3){transform:rotate(-1deg);}
+
+  /* lightbox */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(15,38,32,0.92);z-index:100;
+    display:none;align-items:center;justify-content:center;padding:40px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox .lb-inner{max-width:900px;width:100%;}
+  .lightbox .ph-image{width:100%;height:60vh;border:1px solid var(--line);}
+  .lightbox .lb-cap{color:var(--chalk);font-family:'Space Mono',monospace;font-size:12px;margin-top:14px;text-align:center;opacity:0.75;}
+  .lightbox .lb-close{
+    position:absolute;top:26px;right:32px;color:var(--chalk);background:none;border:1px solid var(--line);
+    width:38px;height:38px;border-radius:50%;font-size:18px;
+  }
+  .lightbox .lb-close:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ---------- principal's message (letter) ---------- */
+  .principal{background:var(--board);color:var(--chalk);}
+  .principal .section-head .eyebrow{color:var(--gold);}
+  .principal .section-head p{color:rgba(245,241,230,0.7);}
+  .letter-grid{display:grid;grid-template-columns:0.62fr 1.38fr;gap:0;background:rgba(245,241,230,0.03);border:1px solid var(--line);}
+  .letter-photo{position:relative;}
+  .letter-photo .ph-image{width:100%;height:100%;min-height:380px;}
+  .letter-body{padding:44px 46px;display:flex;flex-direction:column;}
+  .letter-ref{
+    display:flex;justify-content:space-between;font-family:'Space Mono',monospace;
+    font-size:11px;color:var(--gold);opacity:0.85;border-bottom:1px solid var(--line);
+    padding-bottom:16px;margin-bottom:26px;letter-spacing:0.04em;
+  }
+  .letter-body h3{font-size:22px;font-weight:600;margin-bottom:18px;}
+  .letter-body p{font-size:15px;line-height:1.75;color:rgba(245,241,230,0.85);margin:0 0 16px;}
+  .letter-sign{margin-top:auto;padding-top:22px;}
+  .letter-sign .sig{font-family:'Fraunces',serif;font-style:italic;font-size:26px;color:var(--gold);}
+  .letter-sign .who{font-size:13.5px;margin-top:6px;}
+  .letter-sign .role{font-family:'Space Mono',monospace;font-size:11px;opacity:0.6;letter-spacing:0.04em;margin-top:2px;}
+
+  /* ---------- testimonials ---------- */
+  .notes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .note{
+    background:#fff; border:1px solid var(--line-dark);
+    padding:28px 26px; position:relative;
+    font-family:'Fraunces',serif; font-style:italic; font-size:15.5px; line-height:1.65;
+    box-shadow:0 6px 0 rgba(31,42,36,0.03);
+  }
+  .note::before{content:'"';position:absolute;top:6px;left:16px;font-size:44px;color:var(--gold);opacity:0.35;font-family:'Fraunces',serif;}
+  .note .quote{position:relative;z-index:1;}
+  .note .attr{
+    margin-top:18px;font-family:'Space Mono',monospace;font-style:normal;
+    font-size:12px;color:var(--maroon);letter-spacing:0.02em;
+  }
+
+  /* ---------- admissions ---------- */
+  .admissions{background:var(--paper-dim);}
+  .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .steps{list-style:none;margin:0;padding:0;counter-reset:step;}
+  .steps li{
+    counter-increment:step;
+    display:flex;gap:18px;padding:20px 0;
+    border-bottom:1px solid var(--line-dark);
+  }
+  .steps li:last-child{border-bottom:none;}
+  .steps li::before{
+    content:counter(step, decimal-leading-zero);
+    font-family:'Space Mono',monospace;font-size:13px;color:var(--gold-dim);
+    flex-shrink:0;padding-top:2px;
+  }
+  .steps li h4{font-size:15.5px;font-weight:600;margin:0 0 4px;}
+  .steps li p{font-size:13.5px;opacity:0.72;margin:0;line-height:1.55;}
+  .terms-card{
+    background:var(--board);color:var(--chalk);padding:34px 30px;
+  }
+  .terms-card h3{font-size:18px;margin-bottom:18px;font-weight:600;color:var(--gold);}
+  .term-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .term-row:last-of-type{border-bottom:none;}
+  .term-row span:last-child{font-family:'Space Mono',monospace;color:var(--gold);}
+  .terms-card .fee-note{font-size:12px;opacity:0.6;margin-top:16px;line-height:1.6;}
+
+  /* ---------- contact / footer ---------- */
+  footer{background:var(--board-dark);color:var(--chalk);padding:70px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;}
+  .foot-brand .name{font-family:'Fraunces',serif;font-size:19px;font-weight:600;}
+  .foot-brand p{font-size:13.5px;opacity:0.65;margin-top:12px;line-height:1.65;max-width:280px;}
+  .foot-col h4{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .foot-col a, .foot-col p{display:block;font-size:13.5px;opacity:0.75;margin-bottom:10px;line-height:1.5;}
+  .foot-col a:hover{opacity:1;color:var(--gold);}
+  .foot-bottom{
+    margin-top:56px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;font-size:12px;opacity:0.5;flex-wrap:wrap;gap:10px;
+  }
+
+  /* whatsapp float */
+  .wa-float{
+    position:fixed;bottom:22px;right:22px;z-index:60;
+    background:#25D366;color:#fff;width:54px;height:54px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px rgba(0,0,0,0.25);
+    transition:transform 0.2s ease;
+  }
+  .wa-float:hover{transform:scale(1.07);}
+
+  @media (max-width: 880px){
+    nav.links, .hero-ctas .cta-ghost{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .ledger-row{grid-template-columns:repeat(2,1fr);}
+    .ledger-cell:nth-child(2){border-right:none;}
+    .card-row, .facility-grid, .notes{grid-template-columns:1fr;}
+    .facility-grid{background:transparent;gap:2px;}
+    .adm-grid{grid-template-columns:1fr;gap:40px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px;}
+    .g-item.big{grid-column:span 2;grid-row:span 1;}
+    .letter-grid{grid-template-columns:1fr;}
+    .letter-photo .ph-image{min-height:220px;}
+    .gallery-board{padding:28px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="crest">SM</div>
+      <div class="brand-text">
+        <div class="name">St. Martin's Mwibale</div>
+        <div class="sub">Secondary School</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#academics">Academics</a>
+      <a href="#life">Life Here</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#principal">Principal</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="#admissions" class="cta-ghost">Term Dates</a>
+      <a href="#contact" class="cta-btn">Apply Now</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="ph-image" data-label="hero-bg.png — wide exterior shot of the school compound or main gate, landscape orientation">
+      <img src="images/hero-bg.png" alt="St. Martin's Wibale Secondary School bus" onerror="this.closest('.ph-image').classList.add('missing')">
+    </div>
+  </div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow"><span class="rule"></span><span class="eyebrow">Mwibale, Kenya · Mixed Day &amp; Boarding</span></div>
+      <h1>Where Mwibale's future is
+        <span class="chalk-underline">written<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M2,10 C50,2 150,2 198,9"/></svg></span>,
+        one lesson at a time.
+      </h1>
+      <p class="lede">A CBC-aligned secondary school built on discipline, faith, and results — where every learner from Mwibale and beyond is known by name and pushed toward their best grade, not just a passing one.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="cta-btn">Book a School Visit</a>
+        <a href="#admissions" class="cta-ghost">See Admission Steps</a>
+      </div>
+    </div>
+
+    <div class="carousel" id="heroCarousel">
+      <div class="carousel-track">
+        <div class="slide active">
+          <div class="s-eyebrow eyebrow">By The Numbers*</div>
+          <div class="slide-stats">
+            <div><div class="num">7.8</div><div class="lbl">Mean grade, 2025 KCSE</div></div>
+            <div><div class="num">96%</div><div class="lbl">University &amp; college transition</div></div>
+            <div><div class="num">420</div><div class="lbl">Learners enrolled</div></div>
+            <div><div class="num">1:16</div><div class="lbl">Teacher : student ratio</div></div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="s-eyebrow eyebrow">Our Vision*</div>
+          <h3>A leading centre of excellence.</h3>
+          <p>To be a leading centre of academic excellence and moral formation in the region, producing graduates who lead with both competence and conscience.</p>
+        </div>
+        <div class="slide">
+          <div class="s-eyebrow eyebrow">Our Mission*</div>
+          <h3>Nurturing disciplined, capable learners.</h3>
+          <p>To provide holistic, CBC-aligned education that equips every learner from Mwibale and beyond with the knowledge, skills and character to transform their community.</p>
+        </div>
+        <div class="slide">
+          <div class="s-eyebrow eyebrow">Our Motto*</div>
+          <h3>"Elimu Ni Nuru" — Education is Light.</h3>
+          <p>Founded in 1998, St. Martin's has carried that motto through 27 years of forming graduates who go on to lead in their professions and their communities.</p>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="carousel-arrows">
+          <button aria-label="Previous slide" id="prevSlide">&#8249;</button>
+          <button aria-label="Next slide" id="nextSlide">&#8250;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ledger-strip">
+  <div class="ledger-row">
+    <div class="ledger-cell"><div class="val">27</div><div class="lbl">years forming graduates</div></div>
+    <div class="ledger-cell"><div class="val">14</div><div class="lbl">clubs &amp; societies</div></div>
+    <div class="ledger-cell"><div class="val">6</div><div class="lbl">boarding dormitories</div></div>
+    <div class="ledger-cell"><div class="val">3</div><div class="lbl">science laboratories</div></div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why Parents Choose Us</div>
+      <h2>Three things we won't compromise on.</h2>
+      <p>Every decision at St. Martin's — from timetable to term fees — is weighed against these. Replace the sample copy below with your school's actual pillars and figures before publishing.</p>
+    </div>
+    <div class="card-row">
+      <div class="report-card reveal">
+        <div class="stamp">A · Verified</div>
+        <div class="grade">A-</div>
+        <h3>Academic rigour</h3>
+        <p>Streamed classes, weekly CATs, and a teaching staff that tracks every learner's grade trend, not just the class average.</p>
+      </div>
+      <div class="report-card reveal">
+        <div class="stamp">B · Verified</div>
+        <div class="grade">24/7</div>
+        <h3>Structured boarding</h3>
+        <p>Supervised prep, house matrons, and a routine that turns discipline into a habit rather than a rule to break.</p>
+      </div>
+      <div class="report-card reveal">
+        <div class="stamp">C · Verified</div>
+        <div class="grade">1:16</div>
+        <h3>Pastoral care</h3>
+        <p>Small class sizes mean form teachers know each learner's strengths, struggles, and home situation by name.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="academics" id="academics">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Ledger</div>
+      <h2>KCSE performance, tracked honestly.</h2>
+      <p>We publish our results the way we'd want a parent to see them — trend included. Swap in your school's real KNEC figures.</p>
+    </div>
+    <div class="ledger-table-wrap reveal">
+      <div class="stamp-verify" id="stampVerify">OFFICIAL<br>RESULTS<br>2025</div>
+      <table class="ledger">
+        <thead>
+          <tr><th>Year</th><th>Candidates</th><th>Mean Grade</th><th>Mean Points</th><th style="width:130px;">Trend</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2022</td><td class="num">98</td><td class="num">C+</td><td class="num">7.1</td>
+            <td><div class="bar-track"><div class="bar-fill" data-w="62"></div></div></td></tr>
+          <tr><td>2023</td><td class="num">104</td><td class="num">B-</td><td class="num">7.4</td>
+            <td><div class="bar-track"><div class="bar-fill" data-w="71"></div></div></td></tr>
+          <tr><td>2024</td><td class="num">111</td><td class="num">B-</td><td class="num">7.6</td>
+            <td><div class="bar-track"><div class="bar-fill" data-w="80"></div></div></td></tr>
+          <tr><td>2025</td><td class="num">119</td><td class="num">B</td><td class="num">7.8</td>
+            <td><div class="bar-track"><div class="bar-fill" data-w="92"></div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="life">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Life At St. Martin's</div>
+      <h2>Beyond the classroom.</h2>
+      <p>Facilities and routines that shape the other 16 hours of a learner's day.</p>
+    </div>
+  </div>
+  <div class="facility-grid reveal">
+    <div class="facility">
+      <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg>
+      <h3>Boarding Dormitories</h3>
+      <p>Six houses, matron-supervised, with fixed prep and lights-out routines.</p>
+    </div>
+    <div class="facility">
+      <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+      <h3>Science Laboratories</h3>
+      <p>Physics, chemistry and biology labs equipped for full practical KCSE work.</p>
+    </div>
+    <div class="facility">
+      <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <h3>Library &amp; Study Hall</h3>
+      <p>A quiet reference and revision space open through prep and weekends.</p>
+    </div>
+    <div class="facility">
+      <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+      <h3>Sports Field</h3>
+      <p>Football, netball and athletics — with inter-house competitions every term.</p>
+    </div>
+    <div class="facility">
+      <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 7v13h16V7z"/><path d="M12 2v11"/><path d="M8 22v-6h8v6"/></svg>
+      <h3>Chapel &amp; Chaplaincy</h3>
+      <p>Weekly fellowship and a chaplain available for pastoral counsel.</p>
+    </div>
+    <div class="facility">
+      <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10h18M6 10V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4M4 10v10h16V10"/></svg>
+      <h3>Dining Hall</h3>
+      <p>Three balanced meals a day, catered on-site for boarders and day scholars.</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Notice Board</div>
+      <h2>A look around campus.</h2>
+      <p>Photos pinned straight from school life. Drop your own images into an <span class="mono" style="font-size:13px;">/images/</span> folder using the filenames below and they'll appear automatically — anything missing shows this placeholder instead.</p>
+    </div>
+    <div class="gallery-board reveal">
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="g-item big" data-cap="campus-entrance.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="campus-entrance.jpg — main gate or entrance signage">
+            <img src="images/campus-entrance.jpg" alt="School signage with KCSE candidates" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">School signage &amp; candidates</div>
+        </div>
+        <div class="g-item" data-cap="exam-day.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="exam-day.jpg — learners in a lesson or exam">
+            <img src="images/exam-day.jpg" alt="Learners sitting an exam outdoors" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">Term exams in session</div>
+        </div>
+        <div class="g-item" data-cap="study-session.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="study-session.jpg — practical session">
+            <img src="images/study-session.jpg" alt="Learners revising outdoors" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">CATs revision</div>
+        </div>
+        <div class="g-item" data-cap="staff-guests.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="staff-guests.jpg — study hall interior">
+            <img src="images/staff-guests.jpg" alt="Staff and guests on campus" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">Staff &amp; guests on campus</div>
+        </div>
+        <div class="g-item" data-cap="leadership-team.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="leadership-team.jpg — field or athletics day">
+            <img src="images/leadership-team.jpg" alt="Leadership team on campus" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">Leadership team</div>
+        </div>
+        <div class="g-item big" data-cap="dormitory.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="dormitory.jpg — boarding house interior">
+            <img src="images/dormitory.jpg" alt="Dormitory" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">dormitory.jpg</div>
+        </div>
+        <div class="g-item" data-cap="school-bus.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="school-bus.jpg — mealtime">
+            <img src="images/school-bus.jpg" alt="School bus" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">Our school bus</div>
+        </div>
+        <div class="g-item" data-cap="graduation.jpg">
+          <span class="pin"></span>
+          <div class="ph-image" data-label="graduation.jpg — prize-giving or graduation day">
+            <img src="images/graduation.jpg" alt="Graduation day" onerror="this.closest('.ph-image').classList.add('missing')">
+          </div>
+          <div class="cap">graduation.jpg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="principal" id="principal">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Leadership</div>
+      <h2>A message from the Principal.</h2>
+      <p>Sample letter — replace with the principal's real words, name and title before publishing.</p>
+    </div>
+    <div class="letter-grid reveal">
+      <div class="letter-photo">
+        <div class="ph-image" data-label="principal.png — portrait headshot, upright orientation">
+          <img src="images/principal.png" alt="Principal of St. Martin's Wibale Secondary School" onerror="this.closest('.ph-image').classList.add('missing')">
+        </div>
+      </div>
+      <div class="letter-body">
+        <div class="letter-ref">
+          <span>FROM THE PRINCIPAL'S DESK</span>
+          <span>REF: SMM/ADM/2026</span>
+        </div>
+        <h3>Welcome to St. Martin's Mwibale.</h3>
+        <p>Every learner who walks through our gate arrives with potential we take seriously. Our role isn't only to prepare them for the KCSE exam, but to send them out as young men and women of discipline, faith and sound judgement — the kind of character that outlasts any single grade.</p>
+        <p>We keep our classes small enough that no learner goes unnoticed, and our routines strict enough that good habits become permanent ones. Behind every number in our results ledger is a teacher who knows that student's name, and a parent we work with, not around.</p>
+        <p>I invite you to visit our compound, sit in on a lesson, and see for yourself the community we've built in Mwibale. We would be glad to have your child join it.</p>
+        <div class="letter-sign">
+          <div class="sig">— PKK</div>
+          <div class="who">Mr. Kennedy Kilaha</div>
+          <div class="role">PRINCIPAL, ST. MARTIN'S MWIBALE SECONDARY SCHOOL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">From Our Community</div>
+      <h2>What parents and alumni say.</h2>
+      <p>Sample voices — replace with real quotes once you've collected them from your parents' WhatsApp group or a short survey.</p>
+    </div>
+    <div class="notes">
+      <div class="note reveal">
+        <div class="quote">My daughter joined in Form 1 struggling with maths. Two years on, it's her best subject — the teachers actually follow up.</div>
+        <div class="attr">— Parent, Form 3 learner</div>
+      </div>
+      <div class="note reveal">
+        <div class="quote">The discipline I got at St. Martin's is what got me through campus. Prep every night wasn't optional, and I'm grateful for it now.</div>
+        <div class="attr">— Alumnus, Class of 2021</div>
+      </div>
+      <div class="note reveal">
+        <div class="quote">What sold us was the ratio. In a class of 40 elsewhere, our son would've been invisible. Here, teachers call him by name.</div>
+        <div class="attr">— Parent, Form 1 learner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="admissions" id="admissions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Admissions</div>
+      <h2>Joining St. Martin's Mwibale.</h2>
+      <p>We admit at Form 1 through KPSEA placement, and accept transfers into Form 2–3 on a case-by-case basis.</p>
+    </div>
+    <div class="adm-grid">
+      <ol class="steps reveal">
+        <li>
+          <div>
+            <h4>Collect an application form</h4>
+            <p>Pick one up at the school office, or request a copy on WhatsApp — details in the footer below.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Submit KCPE / KPSEA results slip</h4>
+            <p>Bring the original and one photocopy, plus a copy of the learner's birth certificate.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Meet the admissions committee</h4>
+            <p>A short interview with the learner and at least one parent or guardian, held on campus.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Confirm the slot</h4>
+            <p>Pay the admission deposit to secure placement ahead of the term opening date.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="terms-card reveal">
+        <h3>Term Dates &amp; Fees — 2026</h3>
+        <div class="term-row"><span>Term 1 opens</span><span>6 Jan</span></div>
+        <div class="term-row"><span>Term 2 opens</span><span>4 May</span></div>
+        <div class="term-row"><span>Term 3 opens</span><span>1 Sep</span></div>
+        <div class="term-row"><span>Boarding fee / term</span><span>KES 24,500*</span></div>
+        <div class="term-row"><span>Day scholar fee / term</span><span>KES 11,200*</span></div>
+        <div class="term-row"><span>Admission deposit</span><span>KES 3,000*</span></div>
+        <p class="fee-note">*Sample figures — confirm exact, board-approved amounts before publishing, and state clearly whether they include lunch, exam or activity levies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="name">St. Martin's Mwibale Secondary School</div>
+        <p>A CBC-aligned mixed day &amp; boarding secondary school in Mwibale, committed to academic excellence and character formation.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Visit / Call</h4>
+        <a href="tel:+254724206231">+254 724 206 231</a>
+        <a href="https://wa.me/254724206231" target="_blank" rel="noopener">WhatsApp the office</a>
+        <p style="opacity:0.75;">Mwibale Road, off the Bungoma–Malaba highway</p>
+      </div>
+      <div class="foot-col">
+        <h4>Write to Us</h4>
+        <a href="mailto:info@stmartinsmwibale.ac.ke">info@stmartinsmwibale.ac.ke</a>
+        <a href="mailto:admissions@stmartinsmwibale.ac.ke">admissions@stmartinsmwibale.ac.ke</a>
+      </div>
+      <div class="foot-col">
+        <h4>Quick Links</h4>
+        <a href="#academics">KCSE results</a>
+        <a href="#admissions">Fee structure</a>
+        <a href="#gallery">Campus gallery</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 St. Martin's Mwibale Secondary School. KoboshSME. Sample content — replace before publishing.</span>
+      <span>Built for Mwibale, by Kutswa Inc..</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/254724206231" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36c1.46.8 3.1 1.22 4.84 1.22 5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm0 18.2c-1.53 0-3.02-.41-4.32-1.19l-.31-.18-3.09.81.82-3.01-.2-.31a8.17 8.17 0 0 1-1.26-4.36c0-4.53 3.69-8.22 8.36-8.22 4.53 0 8.22 3.69 8.22 8.22 0 4.53-3.69 8.24-8.22 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42-.14 0-.31-.02-.48-.02-.16 0-.43.06-.66.31-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+</a>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <div class="lb-inner">
+    <div class="ph-image" id="lbImage"></div>
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+</div>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // ledger bar fills
+  const bars = document.querySelectorAll('.bar-fill');
+  const barIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.width = e.target.dataset.w + '%';
+        barIo.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.4});
+  bars.forEach(b=>barIo.observe(b));
+
+  // stamp animation
+  const stamp = document.getElementById('stampVerify');
+  const stampIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        stamp.classList.add('in');
+        stampIo.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.5});
+  if(stamp) stampIo.observe(stamp);
+
+  // hero carousel
+  (function(){
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.querySelectorAll('.slide'));
+    const dotsWrap = document.getElementById('carouselDots');
+    let current = 0;
+    let timer;
+
+    slides.forEach((_, i)=>{
+      const dot = document.createElement('button');
+      if(i===0) dot.classList.add('active');
+      dot.addEventListener('click', ()=>goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function goTo(i){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function next(){ goTo(current+1); }
+    function prev(){ goTo(current-1); }
+    function start(){ timer = setInterval(next, 5000); }
+    function stop(){ clearInterval(timer); }
+
+    document.getElementById('nextSlide').addEventListener('click', ()=>{ next(); stop(); start(); });
+    document.getElementById('prevSlide').addEventListener('click', ()=>{ prev(); stop(); start(); });
+    const carouselEl = document.getElementById('heroCarousel');
+    carouselEl.addEventListener('mouseenter', stop);
+    carouselEl.addEventListener('mouseleave', start);
+    start();
+  })();
+
+  // gallery lightbox
+  (function(){
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbCap = document.getElementById('lbCap');
+    document.querySelectorAll('.g-item').forEach(item=>{
+      item.addEventListener('click', ()=>{
+        const src = item.querySelector('img').getAttribute('src');
+        const label = item.querySelector('.ph-image').getAttribute('data-label');
+        const cap = item.getAttribute('data-cap');
+        lbImage.innerHTML = '<img src="'+src+'" alt="" onerror="this.closest(\'.ph-image\').classList.add(\'missing\')">';
+        lbImage.setAttribute('data-label', label);
+        lbImage.classList.remove('missing');
+        lbCap.textContent = cap;
+        lightbox.classList.add('open');
+      });
+    });
+    document.getElementById('lbClose').addEventListener('click', ()=> lightbox.classList.remove('open'));
+    lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) lightbox.classList.remove('open'); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lightbox.classList.remove('open'); });
+  })();
+</script>
+
+</body>
+</html>
